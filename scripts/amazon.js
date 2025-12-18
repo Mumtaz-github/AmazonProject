@@ -18,7 +18,7 @@ priceCents: 1090
         stars: 4,
         count: 127
     },
-    priceCent: 2095
+    priceCents: 2095
 }, {
     image: 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
     name: ' Adults Plain Cotton T-Shirt - 2 Pack',
@@ -26,14 +26,15 @@ priceCents: 1090
         stars: 4.5,
         count:   56
     },
-    priceCent: 799
+    priceCents: 799
 }];
 //to combine together we create a variable at the top for 
-//combining all the strings together
+//combining all html the strings together
 let productsHTML = '';
 
 products.forEach((product) => {
-const html = `<div class="product-container">
+productsHTML  += `
+<div class="product-container">
     <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -51,8 +52,10 @@ const html = `<div class="product-container">
             </div>
           </div>
 
+        
           <div class="product-price">
-         ${product.priceCent / 100}
+    <!--this method is for show number with 2 decimal places-->
+         $${(product.priceCents / 100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -82,5 +85,11 @@ const html = `<div class="product-container">
           </button>
         </div>
         `;
-        console.log(html);
+       
  });
+ console.log(productsHTML);
+
+
+ //use dom
+ document.querySelector('.js-products-grid').
+ innerHTML = productsHTML;
