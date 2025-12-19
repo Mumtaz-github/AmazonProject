@@ -52,7 +52,8 @@ productsHTML  += `
 
           <button class="add-to-cart-button 
           button-primary js-add-to-cart"
-          data-product-name="${product.name}">
+        //   data-product-name="${product.name}">
+           data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>
@@ -69,6 +70,34 @@ productsHTML  += `
  document.querySelectorAll('.js-add-to-cart')
  .forEach((button) => {
     button.addEventListener('click', () => {
-      
+        //the dataset property basicall gives us all the data attributes that
+        //are attached to this button 
+     const productId =  button.dataset
+     .productId;
+
+     //to check that this product already in the cart
+     //item is parameter, it contain product name and quantity
+     //we used loop here
+     //we save it in variable for later use and we create outside the scope
+ let matchingItem;
+
+        cart.forEach((item) => {
+        if (productId === item.productId) {
+        matchingItem = item;
+        }
+    });
+
+//if product in the cart we'll just increase its quantity by one 
+if (matchingItem) {
+    matchingItem.quantity += 1;
+
+    //if the product is not in the cart we'll add to the cart
+    }else  {
+   Cart.push({
+        productId: productId,
+        quantity: 1
+     });
+    }
+  
     });
  });
