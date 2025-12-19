@@ -52,8 +52,8 @@ productsHTML  += `
 
           <button class="add-to-cart-button 
           button-primary js-add-to-cart"
-        //   data-product-name="${product.name}">
-           data-product-id="${product.id}">
+     
+           data-product-id="${product.id}"> 
             Add to Cart
           </button>
         </div>
@@ -82,8 +82,8 @@ productsHTML  += `
  let matchingItem;
 
         cart.forEach((item) => {
-        if (productId === item.productId) {
-        matchingItem = item;
+          if (productId === item.productId) {
+           matchingItem = item;
         }
     });
 
@@ -92,12 +92,25 @@ if (matchingItem) {
     matchingItem.quantity += 1;
 
     //if the product is not in the cart we'll add to the cart
-    }else  {
-   Cart.push({
+    } else {
+cart.push({
         productId: productId,
         quantity: 1
      });
     }
-  
+
+    //create variable to sava all quantity in
+   let cartQuantity = 0;
+
+//this is going to loop through each object in the cart
+    cart.forEach((item) => {
+        //this will add up all the quantities and save it in 
+        //let cartQuantity
+     cartQuantity += item.quantity;
+    });
+
+    //dom
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
     });
  });
