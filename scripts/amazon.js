@@ -1,4 +1,5 @@
-import {cart} from '../data/cart.js';
+//jboth 
+import {cart, addToCart} from '../data/cart.js';
 import { products } from '../data/products.js';
 
 
@@ -70,52 +71,45 @@ productsHTML  += `
  innerHTML = productsHTML;
 
 
- 
+
+ // function cart quantity apdate
+ //this function actually handles updating the web page rather 
+ //than managing the cart so we're going to keep this function 
+ //inside this file for now
+function updateCartQuantity() {
+  //create variable to sava all quantity in
+   let cartQuantity = 0;
+
+//this is going to loop through each object in the cart
+    cart.forEach((cartItem) => {
+        //this will add up all the quantities and save it in 
+        //let cartQuantity
+     cartQuantity += cartItem.quantity;
+    });
+
+    //dom
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
+
 
  document.querySelectorAll('.js-add-to-cart')
  .forEach((button) => {
     button.addEventListener('click', () => {
         //the dataset property basicall gives us all the data attributes that
         //are attached to this button 
-     const productId =  button.dataset
-     .productId;
+     const productId =  button.dataset.productId;
+
+    // here we run or call the function for the product and cart
+     addToCart(productId);
 
      //to check that this product already in the cart
      //item is parameter, it contain product name and quantity
      //we used loop here
      //we save it in variable for later use and we create outside the scope
- let matchingItem;
 
-        cart.forEach((item) => {
-          if (productId === item.productId) {
-           matchingItem = item;
-        }
-    });
-
-//if product in the cart we'll just increase its quantity by one 
-if (matchingItem) {
-    matchingItem.quantity += 1;
-
-    //if the product is not in the cart we'll add to the cart
-    } else {
-cart.push({
-        productId: productId,
-        quantity: 1
-     });
-    }
-
-    //create variable to sava all quantity in
-   let cartQuantity = 0;
-
-//this is going to loop through each object in the cart
-    cart.forEach((item) => {
-        //this will add up all the quantities and save it in 
-        //let cartQuantity
-     cartQuantity += item.quantity;
-    });
-
-    //dom
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+  //here call the function updateCartQuantity
+  updateCartQuantity();
 
     });
  });
