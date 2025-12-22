@@ -29,7 +29,8 @@ products.forEach((product) => {
 // console.log(matchingProduct);
 
 cartSummaryHTML += `
- <div class="cart-item-container">
+ <div class="cart-item-container 
+ js-cart-item-container-${matchingProduct.id}"> <!--we add specail class-->
     <div class="delivery-date">
         Delivery date: Tuesday, June 21
     </div>
@@ -116,7 +117,13 @@ link.addEventListener('click', () => {
 
  
  removeFromCart(productId);
- console.log(cart);
+
+ //this dom delete the product from page , and .remove() use with
+ //dom 
+  const container = document.querySelector(
+  `.js-cart-item-container-${productId}`
+ );
+container.remove();
 });
 });
 
