@@ -1,5 +1,5 @@
 
-export const cart = [{
+export let cart = [{
     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2,
     //here we'll not other detail like price etc manually
@@ -36,3 +36,26 @@ cart.push({
     }
 
  } 
+
+ //we create a function for removing a product from the cart
+ //step:1, create a new array
+ //2. loop through the cart
+ //3. add each product to the new array, except for this productId
+  export function removeFromCart(productId) {
+
+    //this is array
+const newCart = [];
+
+// this is loop and inside function, then object
+//so the result of this loop is it's going to contain all 
+// the cart items that don't match match this (productId)
+cart.forEach((cartItem) => {
+
+    if (cartItem.productId !== productId) {
+        newCart.push(cartItem);
+    }
+});
+
+//the last stpe we gonna take const newCart = []; and replace the on the top of this page
+cart = newCart;
+ }

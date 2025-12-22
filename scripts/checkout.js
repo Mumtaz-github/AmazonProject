@@ -3,7 +3,7 @@
 //the first step we need to do is to take the cart array from
 // cart.js and import it into checkout.js so we can use it
 
-import {cart} from '../data/cart.js';
+import {cart, removeFromCart} from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
@@ -43,7 +43,7 @@ cartSummaryHTML += `
             </div>
             <div class="product-price">
 
-            //sharefunction
+            <!--sharefunction -->
            $${formatCurrency(matchingProduct.priceCents)}
             </div>
             <div class="product-quantity">
@@ -53,7 +53,8 @@ cartSummaryHTML += `
                 <span class="update-quantity-link link-primary">
                     Update
                 </span>
-                <span class="delete-quantity-link link-primary">
+                <span class="delete-quantity-link link-primary js-delete-link" 
+                data-product-id="${matchingProduct.id}"> <!--here we add data attribute -->
                     Delete
                 </span>
             </div>
@@ -106,4 +107,16 @@ document.querySelector('.js-order-summary')
 .innerHTML = cartSummaryHTML;
 //we basically generating html with javascript and then putting
 //it on the page
+
+
+document.querySelectorAll('.js-delete-link')
+.forEach((link) => {
+link.addEventListener('click', () => {
+ const productId = link.dataset.productId;
+
+ 
+ removeFromCart(productId);
+ console.log(cart);
+});
+});
 
