@@ -1,5 +1,11 @@
+//here we get the cart from localstrage instead of default value
+//second we reconvert the string back to the array and use JSON.parse for this
+export let cart = JSON.parse( localStorage.getItem('cart'));
 
-export let cart = [{
+
+// if the cart is empty we just gave it default the below value 
+if (!cart) {
+cart = [{
     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2,
     //here we'll not other detail like price etc manually
@@ -9,6 +15,14 @@ export let cart = [{
     productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
     quantity: 1
 }];
+
+}
+
+
+//we save to the localstrage from variable, in localstorage we just save string so we use JSON.stringify to convert it into string
+function saveToStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
 
 //we bring this function from amazon.js because it's belong to 
@@ -35,6 +49,9 @@ cart.push({
      });
     }
 
+
+saveToStorage();
+
  } 
 
  //we create a function for removing a product from the cart
@@ -58,4 +75,6 @@ cart.forEach((cartItem) => {
 
 //the last stpe we gonna take const newCart = []; and replace the on the top of this page
 cart = newCart;
+
+saveToStorage();
  }
