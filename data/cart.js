@@ -1,6 +1,6 @@
 //here we get the cart from localstrage instead of default value
 //second we reconvert the string back to the array and use JSON.parse for this
-export let cart = JSON.parse( localStorage.getItem('cart'));
+export let cart = JSON.parse(localStorage.getItem('cart'));
 
 
 // if the cart is empty we just gave it default the below value 
@@ -33,7 +33,7 @@ function saveToStorage() {
 //we bring this function from amazon.js because it's belong to 
 //cart and it is good to organize the code
  //create a function for part product id and cart
- export function addToCart(productId) {
+ export function addToCart(productId) {  //added quantity 261225 for chatgpt
  let matchingItem;
 
         cart.forEach((cartItem) => {
@@ -44,13 +44,15 @@ function saveToStorage() {
 
 //if product in the cart we'll just increase its quantity by one 
 if (matchingItem) {
-    matchingItem.quantity += 1;
+ //   matchingItem.quantity += 1;
+      matchingItem.quantity += 1;  //added quantity 261225 for chatgpt
 
     //if the product is not in the cart we'll add to the cart
     } else {
-cart.push({
+        cart.push({
         productId: productId,
-        quantity: 1,
+       quantity: 1,
+        //  quantity,  //added quantity 261225 for chatgpt
         deliveryOptionId: '1'
      });
     }

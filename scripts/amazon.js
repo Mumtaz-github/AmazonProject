@@ -4,10 +4,12 @@ import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
 
-let productsHTML = '';
+let productsHTML = ''; //for combine all the string together 
 
 products.forEach((product) => {
-productsHTML  += `
+ //   productsHTML = productsHTML +`
+productsHTML  += ` <!--shortcut and called accumulator pattern-->
+
 <div class="product-container">
     <div class="product-image-container">
             <img class="product-image"
@@ -33,7 +35,7 @@ productsHTML  += `
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector"> <!--class add 261225 for chatgpt-->
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -67,9 +69,8 @@ productsHTML  += `
 //  console.log(productsHTML);
 
 
- //use dom
- document.querySelector('.js-products-grid').
- innerHTML = productsHTML;
+ //use dom to put on page
+ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 
 
@@ -114,3 +115,25 @@ function updateCartQuantity() {
 
     });
  });
+
+/*
+//this bottom code added by chatgpt
+document.querySelectorAll('.js-add-to-cart')
+.forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
+
+    // get the quantity from the dropdown in the same product box
+    const productContainer = button.closest('.product-container');
+    const quantity = Number(
+      productContainer.querySelector('.js-quantity-selector').value
+    );
+
+    addToCart(productId, quantity);
+    updateCartQuantity();
+  });
+});
+ updateCartQuantity();
+
+
+*/
