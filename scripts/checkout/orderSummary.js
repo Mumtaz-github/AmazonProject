@@ -9,16 +9,18 @@ import { formatCurrency } from '../utils/money.js';
  //import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js'; // ESM version of library
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; //dayjs external with javascript modules
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
 
 
-const today = dayjs();
- const deliveryDate = today.add(7, 'days'); 
- //today.add(7, 'days')this is add method
+//it was practice code to learn external library we dont need so i put in comment for later learn how it work
+// const today = dayjs();
+//  const deliveryDate = today.add(7, 'days'); 
+//  //today.add(7, 'days')this is add method
 
- //this method takes this date and converts it into a string with
- //this format
- console.log(deliveryDate.format('dddd, MMMM D'));
+//  //this method takes this date and converts it into a string with
+//  //this format
+//  console.log(deliveryDate.format('dddd, MMMM D'));
 
 //render mean to display on the page
 //this function should display the order summary on the page
@@ -179,7 +181,7 @@ const today = dayjs();
         .forEach((link) => {
         link.addEventListener('click', () => {
         const productId = link.dataset.productId;
-        removeFromCart(productId);
+        removeFromCart(productId); //update data after delete
 
         //this dom delete the product from page , and .remove() use with
         //dom 
@@ -187,6 +189,10 @@ const today = dayjs();
         `.js-cart-item-container-${productId}`
         );
         container.remove(); // i have to check it not sure for this
+
+
+        //regenerate all the html after delete
+        renderPaymentSummary();
         });
         });
 
@@ -203,6 +209,7 @@ const today = dayjs();
 
         //rerun the code
         renderOrderSummary();
+        renderPaymentSummary();
         });  
         });
     }
