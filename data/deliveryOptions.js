@@ -14,3 +14,23 @@
     deliveryDays: 1,
     priceCents: 999
 }];
+
+
+
+export function getDeliveryOption(deliveryOptionId) {
+let deliveryOption;
+
+        //this will take this (deliveryOptionId) and get the delivery option
+        // let deliveryOption; from the above array 
+        deliveryOptions.forEach((option) => {
+            if (option.id === deliveryOptionId) {
+                deliveryOption = option;
+            }
+        });
+
+        //let's return delivery option so we can use it outside of this funtion
+        //and just to be safe let's also give this a default value if we dont
+        //find the delivery option so we use default operator || OR
+        //and let's make the default value the first delivery option [0];
+      return deliveryOption || deliveryOptions[0];
+}

@@ -1,3 +1,19 @@
+  
+  //we create a function to reuse that code
+  export function getProduct(productId) {
+    let matchingProduct;
+   products.forEach((product) => {
+        if (product.id === productId) {
+            matchingProduct = product;
+        }
+        });
+
+        return matchingProduct;
+  }
+
+  
+  
+  
   //i export to the amazon.js
   export const products = [
   {

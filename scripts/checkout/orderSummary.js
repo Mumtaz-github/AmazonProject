@@ -4,11 +4,11 @@
 // cart.js and import it into checkout.js so we can use it
 
 import {cart, removeFromCart, updateDeliveryOption} from '../../data/cart.js';
-import { products } from '../../data/products.js';
+import { products, getProduct} from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
  //import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js'; // ESM version of library
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; //dayjs external with javascript modules
-import {deliveryOptions} from '../../data/deliveryOptions.js';
+import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 
 
 
@@ -35,26 +35,28 @@ const today = dayjs();
         const productId = cartItem.productId;
 
         //let create variable to save the result mean full product detail
-        let matchingProduct;
+        const matchingProduct = getProduct(productId);
 
-        products.forEach((product) => {
-        if (product.id === productId) {
-            matchingProduct = product;
-        }
-        });
+        //getProduct(productId); replaced the code because we built the function in product.js and and import from there
+        // products.forEach((product) => {
+        // if (product.id === productId) {
+        //     matchingProduct = product;
+        // }
+        // });
 
 
         // console.log(matchingProduct);
 
         const deliveryOptionId = cartItem.deliveryOptionId;
 
-        let deliveryOption;
+       const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-        deliveryOptions.forEach((option) => {
-            if (option.id === deliveryOptionId) {
-                deliveryOption = option;
-            }
-        });
+    //we imported the function and replaced this code by = getDeliveryOption;
+        // deliveryOptions.forEach((option) => {
+        //     if (option.id === deliveryOptionId) {
+        //         deliveryOption = option;
+        //     }
+        // });
 
         const today = dayjs();
         const deliveryDate = today.add(
