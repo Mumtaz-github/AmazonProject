@@ -87,6 +87,7 @@ function updateCartQuantity() {
         //this will add up all the quantities and save it in 
         //let cartQuantity
      cartQuantity += cartItem.quantity;
+     
     });
 
     //dom
