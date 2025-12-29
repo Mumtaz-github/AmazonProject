@@ -61,6 +61,7 @@ import { renderPaymentSummary } from './paymentSummary.js';
         // });
 
         const today = dayjs();
+        
         const deliveryDate = today.add(
         deliveryOption.deliveryDays,
         'days'

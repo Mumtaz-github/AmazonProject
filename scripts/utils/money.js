@@ -8,6 +8,7 @@
      //7.005.toFixed(2) => '7.00' x
       //8.005.toFixed(2) => '8.01' correct
 return (Math.round(priceCents) / 100).toFixed(2);
+
 }
 
 
