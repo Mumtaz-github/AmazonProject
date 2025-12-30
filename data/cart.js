@@ -1,6 +1,13 @@
 //here we get the cart from localstrage instead of default value
 //second we reconvert the string back to the array and use JSON.parse for this
-export let cart = JSON.parse(localStorage.getItem('cart'));
+export let cart;
+
+loadFromStorage();
+
+
+//to rerun the above code we create a function
+export function loadFromStorage() {
+cart = JSON.parse(localStorage.getItem('cart'));
 
 
 // if the cart is empty we just gave it default the below value 
@@ -22,7 +29,7 @@ cart = [{
 }];
 
 }
-
+}
 
 //we save to the localstrage from variable, in localstorage we just save string so we use JSON.stringify to convert it into string
 function saveToStorage() {
@@ -42,7 +49,8 @@ function saveToStorage() {
         }
     });
 
-//if product in the cart we'll just increase its quantity by one 
+// if product in the cart we'll just increase its quantity by one 
+//product already in the cart
 if (matchingItem) {
  //   matchingItem.quantity += 1;
       matchingItem.quantity += 1;  //added quantity 261225 for chatgpt
