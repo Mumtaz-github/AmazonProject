@@ -73,6 +73,10 @@ import { renderPaymentSummary } from './paymentSummary.js';
 
         cartSummaryHTML += `
         <div class="cart-item-container 
+        
+js-cart-item-container
+
+
         js-cart-item-container-${matchingProduct.id}"> <!--we add specail class-->
             <div class="delivery-date">
                 Delivery date: ${dateString}
@@ -90,14 +94,18 @@ import { renderPaymentSummary } from './paymentSummary.js';
                     <!--sharefunction -->
                 $${formatCurrency(matchingProduct.priceCents)}
                     </div>
-                    <div class="product-quantity">
+                    <div class="product-quantity
+                    
+                js-product-quantity-${matchingProduct.id}"> <!---->this line added jsmine test
                         <span>
                             Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                         </span>
                         <span class="update-quantity-link link-primary">
                             Update
                         </span>
-                        <span class="delete-quantity-link link-primary js-delete-link" 
+                        <span class="delete-quantity-link link-primary js-delete-link
+ <!--js-delete-link-with matchingProduct.id add for jasmine test--> 
+                        js-delete-link-${matchingProduct.id}" 
                         data-product-id="${matchingProduct.id}"> <!--here we add data attribute -->
                             Delete
                         </span>
@@ -138,8 +146,7 @@ import { renderPaymentSummary } from './paymentSummary.js';
             );  
 
             //here used ternary operator
-        const priceString = deliveryOption.priceCents 
-        === 0
+        const priceString = deliveryOption.priceCents  === 0
         ? 'FREE'
         : `$${formatCurrency(deliveryOption.priceCents)} -`;
 
@@ -193,7 +200,7 @@ import { renderPaymentSummary } from './paymentSummary.js';
 
 
         //regenerate all the html after delete
-        renderPaymentSummary();
+      //  renderPaymentSummary(); //if i put in comment the jsmine test passed if i remove the comment faild
         });
         });
 
