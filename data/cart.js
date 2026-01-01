@@ -52,7 +52,6 @@ function saveToStorage() {
 // if product in the cart we'll just increase its quantity by one 
 //product already in the cart
 if (matchingItem) {
- //   matchingItem.quantity += 1;
       matchingItem.quantity += 1;  //added quantity 261225 for chatgpt
 
     //if the product is not in the cart we'll add to the cart
