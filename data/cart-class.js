@@ -2,26 +2,37 @@
 //class is basically object generator
 class Cart {
     //this is property
-     cartItems;
-     localStorageKey;
+     cartItems; //public property meaning it can be accessed anywhere
+
+      //to make localStorageKey private we use #
+      //this is called private property, it means it can only be used 
+      //inside this class
+      //a property without a # hash in front is called a public property
+    #localStorageKey;
+
+    
 
 
 //new method called contructor
 constructor(localStorageKey) {
 
 //here we set the property localStorageKey for the object which was undefined before on the top
-this.localStorageKey = localStorageKey;
-
-//load cart from the storage , this point to the object that we generate
-this.loadFromStorage();
+this.#localStorageKey = localStorageKey;
+this.#loadFromStorage();
 
 }
 
 
 
-
-     loadFromStorage() {
-this.cartItems = JSON.parse(localStorage.getItem('this.localStorageKey')); //this point to the object and localStorageKey will access this property
+//load cart from the storage , this point to the object that we generate
+//the method looadFromStorage should also only be used inside this class
+// to make our code safe we make it private that no one can access from 
+//from outside so make it also private
+//to make it private this is useful in begger project where people might 
+//not be sure which properties and method they're supposed to use outside
+//the class and which ones to avoid
+     #loadFromStorage() {
+this.cartItems = JSON.parse(localStorage.getItem('this.#localStorageKey')); //this point to the object and localStorageKey will access this property
 
 
  //we have this method for every object that we generate
@@ -45,7 +56,7 @@ this.cartItems = [{
 
 //this is also method
 saveToStorage() {
-    localStorage.setItem('this.localStorageKey', JSON.stringify(this.cartItems));
+    localStorage.setItem('this.#localStorageKey', JSON.stringify(this.cartItems));
 }
 
 
