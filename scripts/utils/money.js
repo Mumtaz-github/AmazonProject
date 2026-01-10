@@ -11,5 +11,5 @@ return (Math.round(priceCents) / 100).toFixed(2);
 
 }
 
-
+//another way of exporting , we can use it when we only want to export 1 thing
 export default formatCurrency;

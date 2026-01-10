@@ -2,7 +2,7 @@
   //we create a function to reuse that code
   export function getProduct(productId) {
     let matchingProduct;
-   products.forEach((product) => {
+      products.forEach((product) => {
         if (product.id === productId) {
             matchingProduct = product;
         }

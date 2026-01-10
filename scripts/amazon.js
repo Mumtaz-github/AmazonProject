@@ -1,8 +1,8 @@
 //jboth 
 import {cart, addToCart} from '../data/cart.js';
-import { products } from '../data/products.js';
-import { formatCurrency } from './utils/money.js';
-
+import {products} from '../data/products.js';
+import {formatCurrency} from './utils/money.js';
+//import * as cartModule from 
 
 let productsHTML = ''; //for combine all the string together 
 
@@ -35,7 +35,7 @@ productsHTML  += ` <!--shortcut and called accumulator pattern-->
           </div>
 
           <div class="product-quantity-container">
-            <select class="js-quantity-selector"> <!--class add 261225 for chatgpt-->
+            <select> 
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -58,8 +58,7 @@ productsHTML  += ` <!--shortcut and called accumulator pattern-->
 
           <button class="add-to-cart-button 
           button-primary js-add-to-cart"
-     
-           data-product-id="${product.id}"> 
+          data-product-id="${product.id}"> 
             Add to Cart
           </button>
         </div>
@@ -102,6 +101,41 @@ function updateCartQuantity() {
         //the dataset property basicall gives us all the data attributes that
         //are attached to this button 
      const productId =  button.dataset.productId;
+        addToCart(productId);  //this was not present before until 2/01/2026
+        //  need to keep eye 
+     //i have to keep on eye on it
+
+     //from 1
+/*
+     let matchingItem;
+
+     cart.forEach((item) => {
+      if (productId === item.productId) {
+  matchingItem = item;
+      }
+     });
+
+     if (matchingItem) {
+      matchingItem.quantity += 1;
+     }else {
+     cart.push({
+     productId: productId,
+     quantity:1 
+    )};
+     }
+//from 1 to here it is moved to cart.js but there is missing  addToCart(productId); so i will keep eye
+
+
+     let cartQuantity = 0;
+
+    cart.forEach((item) => {
+     cartQuantity += item.quantity;
+    });
+
+    document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity;
+    */
+
 
     // here we run or call the function for the product and cart
      addToCart(productId);
@@ -116,6 +150,22 @@ function updateCartQuantity() {
 
     });
  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 //this bottom code added by chatgpt

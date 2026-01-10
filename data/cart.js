@@ -1,13 +1,51 @@
 //here we get the cart from localstrage instead of default value
 //second we reconvert the string back to the array and use JSON.parse for this
-export let cart;
+/* 
+for verification 2janvier
+export let cart = JSON.parse(localStorage.getItem('cart'));
+if (!cart) {
+cart = [{
+    productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+    quantity: 2, 
+      deliveryOptionId: '1'
+}, {
+    productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+    quantity: 1,
+      deliveryOptionId: '2'
+}];
+}
 
-loadFromStorage();
+function saveToStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
 
+ export function addToCart(productId) {  
+ let matchingItem;
 
-//to rerun the above code we create a function
-export function loadFromStorage() {
-cart = JSON.parse(localStorage.getItem('cart'));
+        cart.forEach((cartItem) => {
+          if (productId === cartItem.productId) {
+           matchingItem = cartItem;
+        }
+    });
+
+    if (matchingItem) {
+      matchingItem.quantity += 1;  
+
+    } else {
+        cart.push({
+        productId: productId,
+       quantity: 1,
+    
+        deliveryOptionId: '1'
+     });
+    }
+
+saveToStorage();
+
+ } 
+
+*/
+export let cart = JSON.parse(localStorage.getItem('cart'));
 
 
 // if the cart is empty we just gave it default the below value 
@@ -27,9 +65,8 @@ cart = [{
 
     deliveryOptionId: '2'
 }];
+}
 
-}
-}
 
 //we save to the localstrage from variable, in localstorage we just save string so we use JSON.stringify to convert it into string
 function saveToStorage() {
@@ -59,7 +96,7 @@ if (matchingItem) {
         cart.push({
         productId: productId,
        quantity: 1,
-        //  quantity,  //added quantity 261225 for chatgpt
+     
         deliveryOptionId: '1'
      });
     }
@@ -69,6 +106,43 @@ saveToStorage();
 
  } 
 
+/*
+create 2 janvier for verification
+export function removeFromCart(productId) {
+const newCart = [];
+
+cart.forEach((cartItem) => {
+if (cartItem.productId !== productId) {
+newCart.push(cartItem);
+}
+
+});
+
+cart = newCart;
+
+saveToStorage();
+}
+
+ export function updateDeliveryOption(productId, deliveryOptionId) {
+let matchingItem;
+
+        cart.forEach((cartItem) => {
+          if (productId === cartItem.productId) {
+           matchingItem = cartItem;
+        }
+    });
+
+    matchingItem.deliveryOptionId = deliveryOptionId;
+
+    saveToStorage();
+}
+
+
+
+
+
+
+*/
  //we create a function for removing a product from the cart
  //step:1, create a new array
  //2. loop through the cart
@@ -109,4 +183,22 @@ saveToStorage();
     matchingItem.deliveryOptionId = deliveryOptionId;
 
     saveToStorage();
+}
+
+
+
+
+// This code was copied from the solutions of exercises 14f - 14n.
+export function updateQuantity(productId, newQuantity) {
+  let matchingItem;
+
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.quantity = newQuantity;
+
+  saveToStorage();
 }
