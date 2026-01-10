@@ -3,16 +3,16 @@
 class Cart {
     //this is property
      cartItems;
-     loadStorageKey;
+     localStorageKey;
 
 
 //new method called contructor
-constructor(loadStorageKey) {
+constructor(localStorageKey) {
 
 //here we set the property localStorageKey for the object which was undefined before on the top
-this.localStorageKey = loadStorageKey;
+this.localStorageKey = localStorageKey;
 
-//load cart from the storage 
+//load cart from the storage , this point to the object that we generate
 this.loadFromStorage();
 
 }
