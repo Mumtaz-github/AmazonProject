@@ -1,7 +1,12 @@
-  
+  import {formatCurrency} from '../scripts/utils/money.js';
+
+
+
   //we create a function to reuse that code
   export function getProduct(productId) {
     let matchingProduct;
+
+
       products.forEach((product) => {
         if (product.id === productId) {
             matchingProduct = product;
@@ -13,6 +18,38 @@
 
   
   
+  //each product is an object here, we're going to learn a technique called converting an object into a class
+  //so what this means is instead of using regular objects in this array we're going to use a class to generate
+  //these objects. so above  array let's create a new class Product. they have properties like id, image etc
+  //this converting object into class
+ class Product {
+    id;
+    image;
+    name;
+    rating;
+    priceCents;
+
+    constructor(productDetails) {
+       this.id = productDetails.id;
+       this.image = productDetails.image;
+       this.name = productDetails.name;
+       this.rating = productDetails.rating;
+       this.priceCents = productDetails.priceCents;
+    }
+
+
+    getStarsUrl() {
+     return `images/ratings/rating-${this.rating.stars * 10}.png`;
+    }
+
+    getPrice() {
+     return `$${formatCurrency(this.priceCents)}`;
+    }
+ }
+
+
+
+
   
   //i export to the amazon.js
   export const products = [
@@ -674,4 +711,16 @@
       "mens"
     ]
   }
-];
+].map((productDetails) => {
+   return new Product(productDetails);
+});
+
+//so map basically loops through an array and for each value it runs a function so we're going to give a fucntion that we want to run
+//for each value it in here run the function third value save it and run the function.
+//let's name this parameter the productDetails, because each object in this array contains product details
+//so now it's going to take each object save it in the parameter and run the function and here we're going to convert the object
+//into a class to do that we're going to use the code new Product(); and we give it this regular object which is the productDetails
+//and now there's a second part to how Map works. so .map creates a new array and whatever we return from this inner function 
+//is going to go inside that new array. so here we're going to return this class so this result is going to be put inside a new array
+//so you can think of map as we take each value in an array we run this function on it and we transform it and then put it inside a new array
+//

@@ -97,7 +97,7 @@ import {renderCheckoutHeader} from './checkoutHeader.js';
                     <div class="product-price">
 
                     <!--sharefunction -->
-                $${formatCurrency(matchingProduct.priceCents)}
+                ${matchingProduct.getPrice()}
                     </div>
 
                     <div class="product-quantity 
