@@ -49,6 +49,13 @@ productsHTML  += ` <!--shortcut and called accumulator pattern-->
             </select>
           </div>
 
+
+          <!--notice that when we call extra infoHTML we don't know what class this is this might be a clothing class
+          or a might just be a product class technique is called Polymorphism. which means we can use a method without
+          needing to know exactly what class this is  -->
+          ${product.extraInfoHTML()}
+
+
           <div class="product-spacer"></div>
 
           <div class="added-to-cart">

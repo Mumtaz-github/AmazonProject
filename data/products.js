@@ -45,9 +45,46 @@
     getPrice() {
      return `$${formatCurrency(this.priceCents)}`;
     }
+
+// for regular products we don't have extra info we want to display so let's just return and empty string
+//so notice that the product class has a method called extra infoHTML and then clothing extends this class below
+//that means clothing will automatically get the extra infoHTML method
+//then we defined this method again inside clothing below
+//so this will actually override or replace the parents method and this technique is called method overriding.
+//one thing note that if we really need to access to the parents method there's a feature we can use called super
+//super gives us access to the parent class.
+    extraInfoHTML() {
+        return '';
+    }
  }
 
 
+ //create more specific type of product class
+ //to use inheritance after the class name we're going to use the word extends and then we gonna give it the class that we want to inherit from
+ //product class above
+
+class Clothing extends Product{
+  sizeChartLink;
+
+  constructor(productDetails) {
+    //so super basically calls the constructor of the parent class which is the product so this will call the constructor up here
+    super(productDetails);
+  this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  //we create this method for cloth size
+  //it will generate extra html that will contain extra information
+  //target=_blank the link to open new tab  blank link
+  //this super calls one of the parents methods, so it put in comment , it is just example
+  extraInfoHTML() {
+   // super.extraInfoHTML();
+return `
+ <a href="${this.sizeChartLink}" target="_blank">
+ Size chart
+ </a>
+`;
+  }
+}
 
 
   
@@ -712,6 +749,14 @@
     ]
   }
 ].map((productDetails) => {
+
+    //here we use type property and it will if it equall to string clothing, 
+    //if it is equal to clothing we're going to convert this object into a clothing class instead
+    //we're going to give the Constructor productDetails, so now our array will contain a mix of 
+    //regular products and clothing
+    if (productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+    }
    return new Product(productDetails);
 });
 
