@@ -85,7 +85,39 @@ return `
 `;
   }
 }
+/*
+//built-in class practice
+//and every date object has a method called toLocalTimeString()
+//this basically gives us the current time
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+*/
 
+/*
+console.log(this);
+
+const object2 = {
+    a: 2,
+    b: this.a
+};
+*/
+
+/*
+function logThis() {
+    console.log(this);
+}
+logThis();
+logThis.call();
+
+
+const object3 = {
+   method: () => {
+    console.log(this);
+   }
+};
+object3.method();
+*/
 
   
   //i export to the amazon.js
@@ -768,4 +800,3 @@ return `
 //and now there's a second part to how Map works. so .map creates a new array and whatever we return from this inner function 
 //is going to go inside that new array. so here we're going to return this class so this result is going to be put inside a new array
 //so you can think of map as we take each value in an array we run this function on it and we transform it and then put it inside a new array
-//
