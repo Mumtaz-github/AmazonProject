@@ -119,7 +119,36 @@ const object3 = {
 object3.method();
 */
 
-  
+
+export let products = [];
+
+export function loadProducts(fun) {
+ const xhr = new XMLHttpRequest();
+
+ xhr.addEventListener('load', () => {
+  products = JSON.parse(xhr.response).map((productDetails) => {
+ if (productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+    }
+   return new Product(productDetails);
+});
+
+console.log('load products');
+
+fun();
+ });
+
+
+ xhr.open('GET', 'https://supersimplebackend.dev/products');
+ xhr.send();
+}
+
+
+
+
+
+
+  /*
   //i export to the amazon.js
   export const products = [
   {
@@ -800,3 +829,6 @@ object3.method();
 //and now there's a second part to how Map works. so .map creates a new array and whatever we return from this inner function 
 //is going to go inside that new array. so here we're going to return this class so this result is going to be put inside a new array
 //so you can think of map as we take each value in an array we run this function on it and we transform it and then put it inside a new array
+*/
+
+
